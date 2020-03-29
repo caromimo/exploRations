@@ -5,19 +5,20 @@ output: html_notebook
 
 ```{r}
 rm(list=ls())
-library(tidyverse)
+library(tibble)
+library(dplyr)
 library(XML)
 library(xml2)
 ```
 
 ```{r}
-file_url <- "https://www.w3schools.com/xml/simple.xml" # url to get data
-data <- read_xml(file_url) # extract xml data from source
+file_url <- "https://www.w3schools.com/xml/simple.xml"
+data <- read_xml(file_url)
 ```
 
 ```{r}
-doc <- xmlParse(data) # parsing data
-df <- xmlToDataFrame(nodes = getNodeSet(doc, "//food")) # convert xml to dataframe
+doc <- xmlParse(data)
+df <- xmlToDataFrame(nodes = getNodeSet(doc, "//food"))
 ```
 
 ```{r}
