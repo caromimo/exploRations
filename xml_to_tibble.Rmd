@@ -1,0 +1,32 @@
+---
+title: "Converting xml to tibble in R"
+output: html_notebook
+---
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(XML)
+library(xml2)
+```
+
+```{r}
+file_url <- "https://www.w3schools.com/xml/simple.xml" # url to get data
+data <- read_xml(file_url) # extract xml data from source
+```
+
+```{r}
+doc <- xmlParse(data) # parsing data
+df <- xmlToDataFrame(nodes = getNodeSet(doc, "//food")) # convert xml to dataframe
+```
+
+```{r}
+tb <- as_tibble(df) %>%
+  transmute(
+    name = name, 
+    price_dollars = parse_number(price), 
+    description = description,
+    calories = as.numeric(calories)
+    )
+```
+
