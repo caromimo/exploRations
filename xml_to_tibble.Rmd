@@ -7,6 +7,7 @@ output: html_notebook
 rm(list=ls())
 library(tibble)
 library(dplyr)
+library(readr)
 library(XML)
 library(xml2)
 ```
